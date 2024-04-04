@@ -94,6 +94,13 @@ jobs:
             target: linux-mips32,
             tests: -test_includes -test_store -test_x509_store
           }, {
+            arch: powerpc64-linux-gnu,
+            libs: libc6-dev-ppc64-cross,
+            # The default compiler for this platform on Ubuntu 20.04 seems
+            # buggy and causes test failures. Dropping the optimisation level
+            # resolves it.
+            target: -O2 linux-ppc64 enable-ec_nistp_64_gcc_128
+          }, {
             arch: powerpc64le-linux-gnu,
             libs: libc6-dev-ppc64el-cross,
             # The default compiler for this platform on Ubuntu 20.04 seems
